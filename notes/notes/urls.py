@@ -23,7 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.list_notes, name='notes_list'),
     path('notes/<int:pk>/', views.note_detail, name='note_detail'),
-    path('add-note/', views.add_note, name='add_note')
+    path('add-note/', views.add_note, name='add_note'),
+    path('<int:pk>/delete_note/', views.delete_note, name='delete-note'),
+    path('<int:pk>/edit_note/', views.edit_note, name='edit-note'),
+    path('search/', views.search, name='search-bar')
 ]
 
 if settings.DEBUG:
