@@ -1,15 +1,50 @@
-<h1>My Notes:</h1>
-<form action="{% url 'search-bar' %}" method="GET">
-    <input type="text" name="search"/>
-    <button type="submit">Search</button>
-</form>
-<a href="{% url 'add_note' %}">Add Note</a>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/home_style.css">
+    </head>
+    <body class="body">
+        <div class="header">
+            <div class="item">
+              <h1>Write, Remember, Repeat.</h1>
+              <a class="add" href="{% url 'add_note' %}">Add Note</a> 
+              <form class="search" action="{% url 'search-bar' %}" method="POST">
+                {{form.as_p}}
+                <button type="submit">Search</button>
+            </form>
+              
+              <!-- <button class="btn btn-primary" type="submit">Search</button> -->
+            </div>
+          </div>
+    
 
-{% for note in notes %}
-   <p>{{ note.title }}</p>
-   <p>{{ note.body }}</p>
-   <a href="{% url 'note_detail' pk=note.pk %}">Details</a>
-   <a href="{% url 'edit-note' pk=note.pk %}">Edit</a>
-   <a href="{% url 'delete-note' pk=note.pk %}">Delete</a>
-   <hr>
-{% endfor %}
+    <section class="container">
+        <!-- <h1>My Notes:</h1>
+        <form action="{% url 'search-bar' %}" method="POST">
+            {{form.as_p}}
+            <button type="submit">Search</button>
+        </form>
+        <a href="{% url 'add_note' %}">Add Note</a> -->
+        
+            {% for note in notes %}
+            <div class="card">
+            
+            <p class="title">{{ note.title }}</p>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+            <div class="info_background">
+            <p class="info">{{ note.body }}</p>
+            </div>
+            <div class="links">
+            <a class="details" href="{% url 'note_detail' pk=note.pk %}">Details</a>
+            <a class="edit" href="{% url 'edit-note' pk=note.pk %}">Edit</a>
+            <a class="delete" href="{% url 'delete-note' pk=note.pk %}">Delete</a>
+            </div>
+            </div>
+            {% endfor %}
+        
+    </section>
+
+    
