@@ -2,6 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="/static/home_style.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans|Oswald:300,400,700'></link>
+
     </head>
     <body class="body">
         <div class="header">
@@ -9,6 +11,7 @@
               <h1>Write, Remember, Repeat.</h1>
               <a class="add" href="{% url 'add_note' %}">Add Note</a> 
               <form class="search" action="{% url 'search-bar' %}" method="POST">
+                {% csrf_token %}
                 {{form.as_p}}
                 <button type="submit">Search</button>
             </form>
@@ -19,12 +22,7 @@
     
 
     <section class="container">
-        <!-- <h1>My Notes:</h1>
-        <form action="{% url 'search-bar' %}" method="POST">
-            {{form.as_p}}
-            <button type="submit">Search</button>
-        </form>
-        <a href="{% url 'add_note' %}">Add Note</a> -->
+        
         
             {% for note in notes %}
             <div class="card">

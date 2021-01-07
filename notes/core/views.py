@@ -51,12 +51,14 @@ def edit_note(request, pk):
 
 def search(request):
     if request.method == 'POST':
-        search = form.cleaned_data["search"]
-        notes = Note.objects.filter(title__icontains=search)
-        return render(request, "core/searchbar.html", {
-            "notes": notes
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search = form.cleaned_data["search"]
+            notes = Note.objects.filter(title__icontains=search)
+            return render(request, "core/searchbar.html", {
+                "notes": notes
 
-    })
+        })
     else:
          return render(request, "core/searchbar.html" )
         
